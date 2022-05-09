@@ -1,9 +1,17 @@
+import { Route, Routes } from "react-router-dom";
 import "./App.css";
+import Home from "./pages/Home/Home";
+import Navber from "./pages/Shared/Navber/Navber";
 
 function App() {
   return (
     <div>
-      <button class="btn btn-primary">Button</button>
+      <Navber></Navber>
+      <Routes>
+        <Route path="/home" element={<Home></Home>}></Route>
+        <Route path="/home" element={<Home></Home>}></Route>
+        <Route path="/home" element={<Home></Home>}></Route>
+      </Routes>
     </div>
   );
 }

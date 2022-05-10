@@ -4,7 +4,7 @@ import UpperReviewPart from "./UpperReviewPart";
 
 const PatientsReview = () => {
   return (
-    <div>
+    <div className="py-8">
       <UpperReviewPart></UpperReviewPart>
       <LowerReviewPart></LowerReviewPart>
     </div>

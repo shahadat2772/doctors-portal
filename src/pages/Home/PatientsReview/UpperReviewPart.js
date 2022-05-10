@@ -3,7 +3,7 @@ import quote from "../../../assets/icons/quote.svg";
 
 const UpperReviewPart = () => {
   return (
-    <div className="flex mt-20 mb-16 justify-between mx-4 md:mx-10">
+    <div className="flex mb-16 justify-between mx-4 md:mx-10">
       <div>
         <h3 className="text-xl text-primary">Testimonial</h3>
         <h2 className="text-2xl">What Our Patients Says</h2>

@@ -4,7 +4,7 @@ import ServicesPart2 from "./ServicesPart2";
 
 const OurServices = () => {
   return (
-    <div className="container my-10">
+    <div className="my-24">
       <h2 className="text-center text-xl font-semibold text-primary">
         OUR SERVICES
       </h2>

@@ -16,7 +16,7 @@ const ServicesPart1 = () => {
     <div className="my-6 grid md:grid-cols-3 justify-items-center gap-6 container mx-auto my-16 servicesPart1Container">
       {services.map((service) => (
         <EachServiceForPart1
-          key={service.id}
+          key={service._id}
           service={service}
         ></EachServiceForPart1>
       ))}

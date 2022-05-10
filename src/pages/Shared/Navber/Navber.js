@@ -8,7 +8,7 @@ const Navber = () => {
     <>
       <li>
         <NavLink
-          className={({ isActive }) => isActive && "activeRoute"}
+          className={({ isActive }) => (isActive ? "activeRoute" : "")}
           to={`/home`}
         >
           Home
@@ -16,7 +16,7 @@ const Navber = () => {
       </li>
       <li>
         <NavLink
-          className={({ isActive }) => isActive && "activeRoute"}
+          className={({ isActive }) => (isActive ? "activeRoute" : "")}
           to={`/about`}
         >
           About
@@ -24,7 +24,7 @@ const Navber = () => {
       </li>
       <li>
         <NavLink
-          className={({ isActive }) => isActive && "activeRoute"}
+          className={({ isActive }) => (isActive ? "activeRoute" : "")}
           to={`/appointment`}
         >
           Appointment
@@ -32,7 +32,7 @@ const Navber = () => {
       </li>
       <li>
         <NavLink
-          className={({ isActive }) => isActive && "activeRoute"}
+          className={({ isActive }) => (isActive ? "activeRoute" : "")}
           to={`/reviews`}
         >
           Reviews
@@ -40,7 +40,7 @@ const Navber = () => {
       </li>
       <li>
         <NavLink
-          className={({ isActive }) => isActive && "activeRoute"}
+          className={({ isActive }) => (isActive ? "activeRoute" : "")}
           to={`/contactUs`}
         >
           Contact Us
@@ -48,7 +48,7 @@ const Navber = () => {
       </li>
       <li>
         <NavLink
-          className={({ isActive }) => isActive && "activeRoute"}
+          className={({ isActive }) => (isActive ? "activeRoute" : "")}
           to={`/login`}
         >
           Login

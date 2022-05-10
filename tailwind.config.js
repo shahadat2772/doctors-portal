@@ -6,7 +6,7 @@ module.exports = {
   daisyui: {
     themes: [
       {
-        DOCtheme: {
+        doctortheme: {
           primary: "#0FCFEC",
           secondary: "#19D3AE",
           accent: "#3A4256",
@@ -14,19 +14,20 @@ module.exports = {
           "base-100": "#ffffff",
         },
       },
-      "dark",
-      "cupcake",
+
+      "light",
     ],
   },
   plugins: [require("daisyui")],
-  daisyui: {
-    styled: true,
-    themes: true,
-    base: false,
-    utils: true,
-    logs: true,
-    rtl: false,
-    prefix: "",
-    darkTheme: "dark",
-  },
 };
+
+// daisyui: {
+//   styled: true,
+//   themes: true,
+//   base: true,
+//   utils: true,
+//   logs: true,
+//   rtl: false,
+//   prefix: "",
+//   darkTheme: "dark",
+// },

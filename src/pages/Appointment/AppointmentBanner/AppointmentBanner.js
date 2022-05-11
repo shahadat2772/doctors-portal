@@ -21,12 +21,12 @@ const AppointmentBanner = ({ dateState }) => {
           backgroundImage: `url('https://i.ibb.co/8r9ZCnQ/bg.png')`,
           backgroundSize: `cover`,
         }}
-        class="hero min-h-screen"
+        className="hero min-h-screen"
       >
-        <div class="hero-content gap-10 flex-col lg:flex-row-reverse">
+        <div className="hero-content gap-10 flex-col lg:flex-row-reverse">
           <img
             src="https://i.ibb.co/5MWmg5w/chair.png"
-            class="md:w-5/12 rounded-lg shadow-2xl"
+            className="md:w-5/12 rounded-lg shadow-2xl"
             alt="dentist"
           />
           <div className="shadow-xl rounded-xl">

@@ -2,14 +2,37 @@ import React from "react";
 import { format } from "date-fns";
 
 const BookingModal = ({ treatment, date, setTreatment }) => {
-  const { name, slots, _id } = treatment;
+  const { treatmentName, slots, _id } = treatment;
 
   const handleBooking = (e) => {
     e.preventDefault();
     const slot = e.target.slot.value;
     const date = e.target.date.value;
-    console.log(slot, date);
-    setTreatment(null);
+    const name = e.target.name.value;
+    const phoneNumber = e.target.number.value;
+    const email = e.target.email.value;
+
+    const bookedAppointment = {
+      treatmentName,
+      date,
+      slot,
+      name,
+      phoneNumber,
+      email,
+    };
+
+    fetch("http://localhost:5000/bookAppointment", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(bookedAppointment),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        setTreatment(null);
+      });
   };
 
   console.log(date);
@@ -25,7 +48,7 @@ const BookingModal = ({ treatment, date, setTreatment }) => {
           >
             ✕
           </label>
-          <h3 className="font-bold text-lg pb-3 pl-1">Book {name}</h3>
+          <h3 className="font-bold text-lg pb-3 pl-1">Book {treatmentName}</h3>
           {/* Booking form */}
           <form onSubmit={handleBooking} action="">
             <input

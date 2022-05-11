@@ -31,6 +31,7 @@ const AvailableAppointment = ({ dateState }) => {
           ></EachAvailableService>
         ))}
       </div>
+      {/* Setting treatment for book */}
       {treatment && (
         <BookingModal
           date={date}

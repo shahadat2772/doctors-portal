@@ -1,15 +1,41 @@
 import { format } from "date-fns";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import BookingModal from "../BookingModal/BookingModal";
+import EachAvailableService from "../EachAvailableService/EachAvailableService";
 
 const AvailableAppointment = ({ dateState }) => {
-  console.log(dateState);
   const [date, setDate] = dateState;
 
+  const [services, setServices] = useState([]);
+
+  const [treatment, setTreatment] = useState({});
+
+  console.log(treatment);
+
+  useEffect(() => {
+    fetch("availableServices.json")
+      .then((res) => res.json())
+      .then((data) => setServices(data));
+  }, []);
+
   return (
-    <div>
-      <h3 className="text-xl text-primary text-center font-normal">
+    <div className="my-16">
+      <h3 className="text-xl text-secondary text-center font-normal">
         Available Appointments on {format(date, "PP")}
       </h3>
+
+      <div className="availableServiceContainer justify-items-center grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mt-16">
+        {services.map((service) => (
+          <EachAvailableService
+            key={service._id}
+            service={service}
+            setTreatment={setTreatment}
+          ></EachAvailableService>
+        ))}
+      </div>
+      {treatment && (
+        <BookingModal date={date} treatment={treatment}></BookingModal>
+      )}
     </div>
   );
 };

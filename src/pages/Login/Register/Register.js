@@ -1,4 +1,5 @@
 import React from "react";
+
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import Loading from "../../Shared/Loading/Loading";
@@ -8,7 +9,6 @@ import {
   useUpdateProfile,
 } from "react-firebase-hooks/auth";
 import { auth } from "../../../firebase.init";
-import { async } from "@firebase/util";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -55,7 +55,7 @@ const Register = () => {
     const displayName = data.name;
     const email = data.email;
     const password = data.password;
-    await createUserWithEmailAndPassword(email, password);
+    createUserWithEmailAndPassword(email, password);
     await updateProfile({ displayName });
     navigate("/appointment");
   };
@@ -100,11 +100,11 @@ const Register = () => {
                   value: true,
                   message: "Email is required",
                 },
-                pattern: {
-                  value:
-                    /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-                  message: "Provide a valid email", // JS only: <p>error message</p> TS only support string
-                },
+                // pattern: {
+                //   value:
+                //     /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+                //   message: "Provide a valid email",
+                // },
               })}
               type="text"
               className="input input-bordered w-full max-w-xs"
@@ -136,7 +136,7 @@ const Register = () => {
                 },
                 minLength: {
                   value: 6,
-                  message: "Must be 6 character or longer.", // JS only: <p>error message</p> TS only support string
+                  message: "Must be 6 character or longer.",
                 },
               })}
               type="text"

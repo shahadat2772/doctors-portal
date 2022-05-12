@@ -8,10 +8,10 @@ import { signOut } from "firebase/auth";
 const Navber = () => {
   const [user] = useAuthState(auth);
 
-  // const handleSignOut = () => {
-  //   signOut(auth);
-  //   console.log("AMi");
-  // };
+  const handleSignOut = () => {
+    signOut(auth);
+    console.log("AMi");
+  };
 
   // Menu items
   const menuItems = (
@@ -57,27 +57,25 @@ const Navber = () => {
         </NavLink>
       </li>
       <li>
-        {/* {user ? (
-          <NavLink
-            className={({ isActive }) => (isActive ? "activeRoute" : "")}
-            to={`/login`}
-          >
-            Login
-          </NavLink>
+        {user ? (
+          <>
+            <button
+              onClick={handleSignOut}
+              className="btn btn-outline border-0"
+            >
+              Logout
+            </button>
+          </>
         ) : (
-          <button
-            onClick={handleSignOut}
-            class="btn  btn-outline border-0 h-full"
-          >
-            Logout
-          </button>
-        )} */}
-        <NavLink
-          className={({ isActive }) => (isActive ? "activeRoute" : "")}
-          to={`/login`}
-        >
-          Login
-        </NavLink>
+          <>
+            <NavLink
+              className={({ isActive }) => (isActive ? "activeRoute" : "")}
+              to={`/login`}
+            >
+              Login
+            </NavLink>
+          </>
+        )}
       </li>
     </>
   );

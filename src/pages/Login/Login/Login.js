@@ -1,6 +1,6 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import SocialLogin from "../SocialLogin/SocialLogin";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+// import SocialLogin from "../SocialLogin/SocialLogin";
 import { useForm } from "react-hook-form";
 import {
   useSignInWithEmailAndPassword,
@@ -8,8 +8,14 @@ import {
 } from "react-firebase-hooks/auth";
 import { auth } from "../../../firebase.init";
 import Loading from "../../Shared/Loading/Loading";
-import el from "date-fns/esm/locale/el/index.js";
+
 const Login = () => {
+  // Getting location
+  let location = useLocation();
+
+  // Navigator
+  const navigate = useNavigate();
+
   // Form hook
   const {
     register,
@@ -22,6 +28,10 @@ const Login = () => {
 
   // google sign up hook
   const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
+
+  // Getting last location
+
+  let from = location.state?.from?.pathname || "/home";
 
   let errorElement;
 
@@ -42,13 +52,14 @@ const Login = () => {
 
   if (user || gUser) {
     console.log(user || gUser);
+    navigate(from);
   }
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     const email = data.email;
     const password = data.password;
     console.log({ email, password });
-    signInWithEmailAndPassword(email, password);
+    await signInWithEmailAndPassword(email, password);
   };
 
   return (
@@ -71,10 +82,10 @@ const Login = () => {
                 pattern: {
                   value:
                     /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-                  message: "Provide a valid email", // JS only: <p>error message</p> TS only support string
+                  message: "Provide a valid email",
                 },
               })}
-              type="text"
+              type="email"
               className="input input-bordered w-full max-w-xs"
             />
             {/* Errors for email */}
@@ -104,7 +115,7 @@ const Login = () => {
                 },
                 minLength: {
                   value: 6,
-                  message: "Must be 6 character or longer.", // JS only: <p>error message</p> TS only support string
+                  message: "Must be 6 character or longer.",
                 },
               })}
               type="text"

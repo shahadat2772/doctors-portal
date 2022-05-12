@@ -1,8 +1,18 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import "./Navber.css";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "../../../firebase.init";
+import { signOut } from "firebase/auth";
 
 const Navber = () => {
+  const [user] = useAuthState(auth);
+
+  // const handleSignOut = () => {
+  //   signOut(auth);
+  //   console.log("AMi");
+  // };
+
   // Menu items
   const menuItems = (
     <>
@@ -43,10 +53,25 @@ const Navber = () => {
           className={({ isActive }) => (isActive ? "activeRoute" : "")}
           to={`/contactUs`}
         >
-          Contact Us
+          Contact
         </NavLink>
       </li>
       <li>
+        {/* {user ? (
+          <NavLink
+            className={({ isActive }) => (isActive ? "activeRoute" : "")}
+            to={`/login`}
+          >
+            Login
+          </NavLink>
+        ) : (
+          <button
+            onClick={handleSignOut}
+            class="btn  btn-outline border-0 h-full"
+          >
+            Logout
+          </button>
+        )} */}
         <NavLink
           className={({ isActive }) => (isActive ? "activeRoute" : "")}
           to={`/login`}

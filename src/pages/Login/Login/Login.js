@@ -56,10 +56,10 @@ const Login = () => {
       <div className="md:w-[385px] w-[345px] pb-6 shadow-xl rounded-xl">
         {/* Form */}
         <form onSubmit={handleSubmit(onSubmit)}>
-          <h1 className="text-center text-xl pb-[30px] pt-[25px]">Login</h1>
+          <h1 className="text-center text-xl pb-[30px] pt-[20px]">Login</h1>
           {/* Email INPUT */}
           <div className=" form-control  max-w-xs mb-2 mx-auto">
-            <label className="label py-1">
+            <label className="label py-1 pt-0">
               <span className="text-sm">Email</span>
             </label>
             <input
@@ -78,7 +78,7 @@ const Login = () => {
               className="input input-bordered w-full max-w-xs"
             />
             {/* Errors for email */}
-            <label className="label">
+            <label className="label pb-0">
               {errors.email?.type === "required" && (
                 <span className="text-[12px] text-red-600">
                   *{errors.email.message}
@@ -93,7 +93,7 @@ const Login = () => {
           </div>
           {/* Password INPUT */}
           <div className=" form-control  max-w-xs mb-2 mx-auto">
-            <label className="label py-1">
+            <label className="label py-1 pt-0">
               <span className="text-sm">Password</span>
             </label>
             <input
@@ -111,7 +111,7 @@ const Login = () => {
               className="input input-bordered w-full max-w-xs"
             />
             {/* Errors for password */}
-            <label className="label">
+            <label className="label pb-0">
               {errors.password?.type === "required" && (
                 <span className="text-[12px] text-red-600">
                   *{errors.password.message}

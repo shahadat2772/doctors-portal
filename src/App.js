@@ -3,6 +3,8 @@ import "./App.css";
 import Appointment from "./pages/Appointment/Appointment/Appointment";
 
 import Home from "./pages/Home/Home/Home";
+import Login from "./pages/Login/Login/Login";
+import Register from "./pages/Login/Register/Register";
 
 import Navber from "./pages/Shared/Navber/Navber";
 
@@ -16,7 +18,8 @@ function App() {
           path="/appointment"
           element={<Appointment></Appointment>}
         ></Route>
-        <Route path="/home" element={<Home></Home>}></Route>
+        <Route path="/login" element={<Login></Login>}></Route>
+        <Route path="/register" element={<Register></Register>}></Route>
       </Routes>
     </div>
   );

@@ -9,7 +9,10 @@ const SocialLogin = () => {
   return (
     <div className="w-[320px] mx-auto">
       <div className="divider w-full ">OR</div>
-      <button className="btn btn-outline block w-full">
+      <button
+        onClick={() => signInWithGoogle()}
+        className="btn btn-outline block w-full"
+      >
         CONTINUE WITH GOOGLE
       </button>
     </div>

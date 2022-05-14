@@ -1,8 +1,11 @@
 import React from "react";
 import { format } from "date-fns";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "../../../firebase.init";
 
 const BookingModal = ({ treatment, date, setTreatment }) => {
   const { treatmentName, slots, _id } = treatment;
+  const [user, loading] = useAuthState(auth);
 
   const handleBooking = (e) => {
     e.preventDefault();
@@ -30,12 +33,10 @@ const BookingModal = ({ treatment, date, setTreatment }) => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setTreatment(null);
       });
   };
 
-  console.log(date);
   return (
     <div>
       {/* <!-- Put this part before </body> tag --> */}
@@ -59,8 +60,8 @@ const BookingModal = ({ treatment, date, setTreatment }) => {
               className="w-full input input-bordered mb-4 "
             />
             <select name="slot" className="w-full input input-bordered mb-4 ">
-              {slots?.map((slot) => (
-                <option key={slot} value={slot}>
+              {slots?.map((slot, index) => (
+                <option key={index} value={slot}>
                   {slot}
                 </option>
               ))}
@@ -68,19 +69,24 @@ const BookingModal = ({ treatment, date, setTreatment }) => {
             <input
               type="text"
               name="name"
-              placeholder="Full Name"
+              // placeholder="Full Name"
+              value={user?.displayName || ""}
+              disabled
+              className="w-full input input-bordered mb-4 "
+            />
+
+            <input
+              type="email"
+              name="email"
+              // placeholder="Email"
+              value={user?.email || ""}
+              disabled
               className="w-full input input-bordered mb-4 "
             />
             <input
               type="text"
               name="number"
               placeholder="Phone Number"
-              className="w-full input input-bordered mb-4 "
-            />
-            <input
-              type="email"
-              name="email"
-              placeholder="Email"
               className="w-full input input-bordered mb-4 "
             />
             <input

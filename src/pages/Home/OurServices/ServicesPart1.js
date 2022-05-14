@@ -10,8 +10,6 @@ const ServicesPart1 = () => {
       .then((data) => setServices(data));
   }, []);
 
-  console.log(services);
-
   return (
     <div className="my-6 grid md:grid-cols-3 justify-items-center gap-6 container mx-auto my-16 servicesPart1Container">
       {services.map((service) => (

@@ -1,8 +1,6 @@
 import React from "react";
 
 const EachServiceForPart1 = ({ service }) => {
-  console.log(service);
-
   const { _id, name, description, img } = service;
 
   return (

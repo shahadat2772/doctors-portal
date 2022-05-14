@@ -10,7 +10,6 @@ const Navber = () => {
 
   const handleSignOut = () => {
     signOut(auth);
-    console.log("AMi");
   };
 
   // Menu items

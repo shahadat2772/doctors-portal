@@ -4,10 +4,7 @@ import { DayPicker } from "react-day-picker";
 import "react-day-picker/dist/style.css";
 
 const AppointmentBanner = ({ dateState }) => {
-  console.log(dateState);
   const [date, setDate] = dateState;
-
-  console.log(date);
 
   let footer = <p>Please pick a day.</p>;
   if (date) {

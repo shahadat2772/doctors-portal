@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 // import SocialLogin from "../SocialLogin/SocialLogin";
 import { useForm } from "react-hook-form";
@@ -35,6 +35,12 @@ const Login = () => {
 
   let errorElement;
 
+  useEffect(() => {
+    if (user || gUser) {
+      navigate(from);
+    }
+  }, [user, gUser, from]);
+
   // Showing loading spinner
   if (loading || gLoading) {
     return <Loading></Loading>;
@@ -50,15 +56,10 @@ const Login = () => {
     errorElement = undefined;
   }
 
-  if (user || gUser) {
-    console.log(user || gUser);
-    navigate(from);
-  }
-
   const onSubmit = async (data) => {
     const email = data.email;
     const password = data.password;
-    console.log({ email, password });
+
     await signInWithEmailAndPassword(email, password);
   };
 

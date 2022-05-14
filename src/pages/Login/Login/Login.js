@@ -5,9 +5,11 @@ import { useForm } from "react-hook-form";
 import {
   useSignInWithEmailAndPassword,
   useSignInWithGoogle,
+  useSendPasswordResetEmail,
 } from "react-firebase-hooks/auth";
 import { auth } from "../../../firebase.init";
 import Loading from "../../Shared/Loading/Loading";
+import toast from "react-hot-toast";
 
 const Login = () => {
   // Getting location
@@ -29,6 +31,10 @@ const Login = () => {
   // google sign up hook
   const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
 
+  // Password reset EMAIL
+  const [sendPasswordResetEmail, sending, rError] =
+    useSendPasswordResetEmail(auth);
+
   // Getting last location
 
   let from = location.state?.from?.pathname || "/home";
@@ -42,14 +48,14 @@ const Login = () => {
   }, [user, gUser, from]);
 
   // Showing loading spinner
-  if (loading || gLoading) {
+  if (loading || gLoading || sending) {
     return <Loading></Loading>;
   }
 
-  if (error || gError) {
+  if (error || gError || rError) {
     errorElement = (
       <p className="text-red-500 max-w-xs mx-auto">
-        <small>{error?.message || gError?.message}</small>
+        <small>{error?.message || gError?.message || rError?.message}</small>
       </p>
     );
   } else {
@@ -61,6 +67,17 @@ const Login = () => {
     const password = data.password;
 
     await signInWithEmailAndPassword(email, password);
+  };
+
+  const handleResetPassword = async () => {
+    // Getting the value from email
+    const email = document.getElementById("emailInput").value;
+    if (!email) {
+      toast.error("Enter an email to reset");
+    } else {
+      await sendPasswordResetEmail(email);
+      toast.success("Password reset email sended");
+    }
   };
 
   return (
@@ -75,6 +92,7 @@ const Login = () => {
               <span className="text-sm">Email</span>
             </label>
             <input
+              id="emailInput"
               {...register("email", {
                 required: {
                   value: true,
@@ -135,7 +153,10 @@ const Login = () => {
               )}
             </label>
             {/* Forgot password */}
-            <label className="label py-1">
+            <label
+              onClick={() => handleResetPassword()}
+              className="label py-1 cursor-pointer"
+            >
               <span className="label-text-alt">Forgot Password?</span>
             </label>
           </div>

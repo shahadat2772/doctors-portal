@@ -1,3 +1,4 @@
+import { Toaster } from "react-hot-toast";
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import Appointment from "./pages/Appointment/Appointment/Appointment";
@@ -26,6 +27,8 @@ function App() {
         <Route path="/login" element={<Login></Login>}></Route>
         <Route path="/register" element={<Register></Register>}></Route>
       </Routes>
+      {/* Common toaster */}
+      <Toaster></Toaster>
     </div>
   );
 }

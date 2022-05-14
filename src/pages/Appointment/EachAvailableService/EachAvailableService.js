@@ -3,17 +3,18 @@ import React from "react";
 const EachAvailableService = ({ service, setTreatment }) => {
   const { treatmentName, slots, _id } = service;
   return (
-    <div className="card w-80 md:w-96 bg-base-100 shadow-xl">
+    <div className="card w-80 md:w-96 bg-base-100 shadow">
       <div className="card-body p-4 items-center text-center">
         <h2 className="card-title text-xl text-secondary">{treatmentName}</h2>
 
         <div>
           {slots.length ? (
-            slots.map((slot) => (
-              <p key={slot} className="text-sm">
-                {slot}
-              </p>
-            ))
+            // slots.map((slot) => (
+            //   <p key={slot} className="text-sm">
+            //     {slot}
+            //   </p>
+            // ))
+            slots[0]
           ) : (
             <p className="text-red-500 block">TRY ANOTHER DAY.</p>
           )}

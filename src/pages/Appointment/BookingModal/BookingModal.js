@@ -2,10 +2,13 @@ import React from "react";
 import { format } from "date-fns";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../../../firebase.init";
+import toast from "react-hot-toast";
 
 const BookingModal = ({ treatment, date, setTreatment }) => {
   const { treatmentName, slots, _id } = treatment;
   const [user, loading] = useAuthState(auth);
+
+  console.log(user);
 
   const handleBooking = (e) => {
     e.preventDefault();
@@ -15,13 +18,14 @@ const BookingModal = ({ treatment, date, setTreatment }) => {
     const phoneNumber = e.target.number.value;
     const email = e.target.email.value;
 
-    const bookedAppointment = {
+    const bookedTreatment = {
+      treatmentId: _id,
       treatmentName,
       date,
       slot,
-      name,
+      patientName: name,
+      patientEmail: email,
       phoneNumber,
-      email,
     };
 
     fetch("http://localhost:5000/bookAppointment", {
@@ -29,11 +33,22 @@ const BookingModal = ({ treatment, date, setTreatment }) => {
       headers: {
         "content-type": "application/json",
       },
-      body: JSON.stringify(bookedAppointment),
+      body: JSON.stringify(bookedTreatment),
     })
       .then((res) => res.json())
       .then((data) => {
-        setTreatment(null);
+        if (data.success) {
+          // Closing the install
+          toast.success(`Appointment booked successfully, ${date} at ${slot}`);
+          setTreatment(null);
+          console.log(data);
+        } else {
+          toast.error(
+            `You already have an Appointment on, ${data.booking.date} at ${data.booking.slot}`
+          );
+          console.log(data);
+          setTreatment(null);
+        }
       });
   };
 

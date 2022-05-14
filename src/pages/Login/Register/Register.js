@@ -20,7 +20,7 @@ const Register = () => {
   } = useForm();
   // Email, password sign in hook
   const [createUserWithEmailAndPassword, user, loading, error] =
-    useCreateUserWithEmailAndPassword(auth);
+    useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
 
   // google sign up hook
   const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
@@ -48,15 +48,15 @@ const Register = () => {
   }
 
   if (user || gUser) {
+    navigate("/appointment");
   }
 
   const onSubmit = async (data) => {
     const displayName = data.name;
     const email = data.email;
     const password = data.password;
-    createUserWithEmailAndPassword(email, password);
+    await createUserWithEmailAndPassword(email, password);
     await updateProfile({ displayName });
-    navigate("/appointment");
   };
   return (
     <div className="loginContainer h-[100vh] flex justify-center items-center">
@@ -104,7 +104,7 @@ const Register = () => {
                   message: "Provide a valid email",
                 },
               })}
-              type="text"
+              type="email"
               className="input input-bordered w-full max-w-xs"
             />
             {/* Errors for email */}
@@ -137,7 +137,7 @@ const Register = () => {
                   message: "Must be 6 character or longer.",
                 },
               })}
-              type="text"
+              type="password"
               className="input input-bordered w-full max-w-xs"
             />
             {/* Errors for password */}

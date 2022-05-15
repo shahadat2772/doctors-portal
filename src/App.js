@@ -2,6 +2,11 @@ import { Toaster } from "react-hot-toast";
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import Appointment from "./pages/Appointment/Appointment/Appointment";
+import Dashboard from "./pages/Dashboard/Dashboard";
+import First from "./pages/Dashboard/First";
+import MyAppointments from "./pages/Dashboard/MyAppointments";
+import MyReview from "./pages/Dashboard/MyReview";
+import Second from "./pages/Dashboard/Second";
 
 import Home from "./pages/Home/Home/Home";
 import Login from "./pages/Login/Login/Login";
@@ -24,6 +29,25 @@ function App() {
             </RequireAuth>
           }
         ></Route>
+
+        {/* Nested Route */}
+
+        <Route
+          path="dashboard"
+          element={
+            <RequireAuth>
+              <Dashboard></Dashboard>
+            </RequireAuth>
+          }
+        >
+          <Route
+            path="myAppointments"
+            index
+            element={<MyAppointments></MyAppointments>}
+          ></Route>
+          <Route path="myReviews" element={<MyReview></MyReview>}></Route>
+        </Route>
+
         <Route path="/login" element={<Login></Login>}></Route>
         <Route path="/register" element={<Register></Register>}></Route>
       </Routes>

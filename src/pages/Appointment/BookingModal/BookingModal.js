@@ -4,7 +4,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../../../firebase.init";
 import toast from "react-hot-toast";
 
-const BookingModal = ({ treatment, date, setTreatment }) => {
+const BookingModal = ({ treatment, date, setTreatment, refetch }) => {
   const { treatmentName, slots, _id } = treatment;
   const [user, loading] = useAuthState(auth);
 
@@ -41,6 +41,7 @@ const BookingModal = ({ treatment, date, setTreatment }) => {
           // Closing the install
           toast.success(`Appointment booked successfully, ${date} at ${slot}`);
           setTreatment(null);
+          refetch();
           console.log(data);
         } else {
           toast.error(

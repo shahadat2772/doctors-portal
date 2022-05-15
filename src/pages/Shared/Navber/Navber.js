@@ -55,6 +55,16 @@ const Navber = () => {
           Contact
         </NavLink>
       </li>
+      {user && (
+        <li>
+          <NavLink
+            className={({ isActive }) => (isActive ? "activeRoute" : "")}
+            to={`/dashboard`}
+          >
+            Dashboard
+          </NavLink>
+        </li>
+      )}
       <li>
         {user ? (
           <>

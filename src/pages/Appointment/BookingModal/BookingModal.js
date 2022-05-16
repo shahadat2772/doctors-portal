@@ -28,7 +28,7 @@ const BookingModal = ({ treatment, date, setTreatment, refetch }) => {
       phoneNumber,
     };
 
-    fetch("http://localhost:5000/bookAppointment", {
+    fetch("https://evening-shelf-54742.herokuapp.com/bookAppointment", {
       method: "POST",
       headers: {
         "content-type": "application/json",

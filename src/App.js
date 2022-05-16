@@ -11,6 +11,7 @@ import Login from "./pages/Login/Login/Login";
 import Register from "./pages/Login/Register/Register";
 import RequireAuth from "./pages/Login/RequireAuth/RequireAuth";
 import Navber from "./pages/Shared/Navber/Navber";
+import RequireAdmin from "./pages/Login/RequireAdmin/RequireAdmin";
 
 function App() {
   return (
@@ -42,8 +43,17 @@ function App() {
             path="myAppointments"
             element={<MyAppointments></MyAppointments>}
           ></Route>
+
           <Route path="myReviews" element={<MyReview></MyReview>}></Route>
-          <Route path="users" element={<Users></Users>}></Route>
+
+          <Route
+            path="users"
+            element={
+              <RequireAdmin>
+                <Users></Users>
+              </RequireAdmin>
+            }
+          ></Route>
         </Route>
 
         <Route path="/login" element={<Login></Login>}></Route>

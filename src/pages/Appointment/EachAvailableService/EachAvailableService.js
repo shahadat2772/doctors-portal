@@ -9,11 +9,6 @@ const EachAvailableService = ({ service, setTreatment }) => {
 
         <div>
           {slots.length ? (
-            // slots.map((slot) => (
-            //   <p key={slot} className="text-sm">
-            //     {slot}
-            //   </p>
-            // ))
             slots[0]
           ) : (
             <p className="text-red-500 block">TRY ANOTHER DAY.</p>

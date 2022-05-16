@@ -5,17 +5,25 @@ const userRow = ({ user, refetch }) => {
   const { email, role } = user;
 
   const makeAdmin = () => {
-    fetch(`http://localhost:5000/user/admin/${email}`, {
+    fetch(`https://evening-shelf-54742.herokuapp.com/user/admin/${email}`, {
       method: "PUT",
       headers: {
         authorization: `Bearer ${window.localStorage.getItem("accessToken")}`,
       },
     })
-      .then((res) => res.json())
+      .then((res) => {
+        if (res.status === 403) {
+          toast.error("Failed to make an admin");
+          return;
+        }
+        return res.json();
+      })
       .then((data) => {
-        console.log(data);
-        refetch();
-        toast.success("Successfully made an admin!");
+        if (data.modifiedCount > 0) {
+          console.log(data);
+          refetch();
+          toast.success("Successfully made an admin!");
+        }
       });
   };
 

@@ -9,6 +9,7 @@ const Navber = () => {
   const [user] = useAuthState(auth);
 
   const handleSignOut = () => {
+    window.localStorage.removeItem("accessToken");
     signOut(auth);
   };
 

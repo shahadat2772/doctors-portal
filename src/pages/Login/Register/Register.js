@@ -9,6 +9,7 @@ import {
   useUpdateProfile,
 } from "react-firebase-hooks/auth";
 import { auth } from "../../../firebase.init";
+import useToken from "../../../hooks/useToken";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -27,6 +28,8 @@ const Register = () => {
 
   // User info update hook
   const [updateProfile, updating, userUpError] = useUpdateProfile(auth);
+
+  const [token] = useToken(user || gUser);
 
   let errorElement;
 
@@ -47,7 +50,7 @@ const Register = () => {
     errorElement = undefined;
   }
 
-  if (user || gUser) {
+  if (token) {
     navigate("/appointment");
   }
 

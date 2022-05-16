@@ -10,6 +10,7 @@ import {
 import { auth } from "../../../firebase.init";
 import Loading from "../../Shared/Loading/Loading";
 import toast from "react-hot-toast";
+import useToken from "../../../hooks/useToken";
 
 const Login = () => {
   // Getting location
@@ -35,6 +36,9 @@ const Login = () => {
   const [sendPasswordResetEmail, sending, rError] =
     useSendPasswordResetEmail(auth);
 
+  // Getting accessToken:
+  const [token] = useToken(user || gUser);
+
   // Getting last location
 
   let from = location.state?.from?.pathname || "/home";
@@ -42,10 +46,10 @@ const Login = () => {
   let errorElement;
 
   useEffect(() => {
-    if (user || gUser) {
-      navigate(from);
+    if (token) {
+      navigate(from, { replace: true });
     }
-  }, [user, gUser, from]);
+  }, [token, from]);
 
   // Showing loading spinner
   if (loading || gLoading || sending) {
@@ -136,7 +140,7 @@ const Login = () => {
                   message: "Must be 6 character or longer.",
                 },
               })}
-              type="text"
+              type="password"
               className="input input-bordered w-full max-w-xs"
             />
             {/* Errors for password */}

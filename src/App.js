@@ -5,6 +5,7 @@ import Appointment from "./pages/Appointment/Appointment/Appointment";
 import Dashboard from "./pages/Dashboard/Dashboard";
 import MyAppointments from "./pages/Dashboard/MyAppointments";
 import MyReview from "./pages/Dashboard/MyReview";
+import Users from "./pages/Dashboard/Users";
 import Home from "./pages/Home/Home/Home";
 import Login from "./pages/Login/Login/Login";
 import Register from "./pages/Login/Register/Register";
@@ -37,11 +38,12 @@ function App() {
           }
         >
           <Route
-            path="myAppointments"
             index
+            path="myAppointments"
             element={<MyAppointments></MyAppointments>}
           ></Route>
           <Route path="myReviews" element={<MyReview></MyReview>}></Route>
+          <Route path="users" element={<Users></Users>}></Route>
         </Route>
 
         <Route path="/login" element={<Login></Login>}></Route>

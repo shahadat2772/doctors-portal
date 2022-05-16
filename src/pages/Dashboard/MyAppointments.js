@@ -3,9 +3,12 @@ import React, { useEffect, useState } from "react";
 import { auth } from "../../firebase.init";
 import { useAuthState } from "react-firebase-hooks/auth";
 import Loading from "../Shared/Loading/Loading";
-import { tr } from "date-fns/locale";
-
+import { useNavigate } from "react-router-dom";
+import { signOut } from "firebase/auth";
 const MyAppointments = () => {
+  // Navigator
+  const navigate = useNavigate();
+
   const [user, loading] = useAuthState(auth);
   const [appointments, setAppointments] = useState([]);
 
@@ -16,18 +19,31 @@ const MyAppointments = () => {
       return <Loading></Loading>;
     }
     if (user) {
-      fetch(`http://localhost:5000/bookings?email=${email}`)
-        .then((res) => res.json())
+      fetch(`http://localhost:5000/bookings?email=${email}`, {
+        method: "GET",
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+      })
+        .then((res) => {
+          console.log("RES", res);
+          if (res.status === 401 || res.status === 403) {
+            window.localStorage.removeItem("accessToken");
+            signOut(auth);
+            navigate("/home");
+          } else {
+            return res.json();
+          }
+        })
         .then((data) => setAppointments(data));
     }
   }, []);
-
   return (
     <div>
       <h2 className="text-2xl">My appointments</h2>
 
-      <div class="overflow-x-auto">
-        <table class="table w-full mt-4">
+      <div className="overflow-x-auto">
+        <table className="table w-full mt-4">
           {/* <!-- head --> */}
           <thead>
             <tr>
@@ -39,8 +55,8 @@ const MyAppointments = () => {
             </tr>
           </thead>
           <tbody>
-            {appointments.map((appointment, index) => (
-              <tr>
+            {appointments?.map((appointment, index) => (
+              <tr key={index}>
                 <th>{index + 1}</th>
                 <td>{appointment.patientName}</td>
                 <td>{appointment.date}</td>

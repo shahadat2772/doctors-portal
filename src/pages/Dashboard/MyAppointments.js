@@ -19,15 +19,12 @@ const MyAppointments = () => {
       return <Loading></Loading>;
     }
     if (user) {
-      fetch(
-        `https://evening-shelf-54742.herokuapp.com/bookings?email=${email}`,
-        {
-          method: "GET",
-          headers: {
-            authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-          },
-        }
-      )
+      fetch(`http://localhost:5000/bookings?email=${email}`, {
+        method: "GET",
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+      })
         .then((res) => {
           console.log("RES", res);
           if (res.status === 401 || res.status === 403) {

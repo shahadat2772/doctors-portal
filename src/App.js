@@ -12,6 +12,8 @@ import Register from "./pages/Login/Register/Register";
 import RequireAuth from "./pages/Login/RequireAuth/RequireAuth";
 import Navber from "./pages/Shared/Navber/Navber";
 import RequireAdmin from "./pages/Login/RequireAdmin/RequireAdmin";
+import AddDoctor from "./pages/Dashboard/AddDoctor";
+import ManageDoctors from "./pages/Dashboard/ManageDoctors";
 
 function App() {
   return (
@@ -51,6 +53,24 @@ function App() {
             element={
               <RequireAdmin>
                 <Users></Users>
+              </RequireAdmin>
+            }
+          ></Route>
+
+          <Route
+            path="addDoctor"
+            element={
+              <RequireAdmin>
+                <AddDoctor></AddDoctor>
+              </RequireAdmin>
+            }
+          ></Route>
+
+          <Route
+            path="manageDoctors"
+            element={
+              <RequireAdmin>
+                <ManageDoctors></ManageDoctors>
               </RequireAdmin>
             }
           ></Route>

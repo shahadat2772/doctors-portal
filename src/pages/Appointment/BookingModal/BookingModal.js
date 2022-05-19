@@ -5,7 +5,7 @@ import { auth } from "../../../firebase.init";
 import toast from "react-hot-toast";
 
 const BookingModal = ({ treatment, date, setTreatment, refetch }) => {
-  const { treatmentName, slots, _id } = treatment;
+  const { treatmentName, slots, _id, price } = treatment;
   const [user, loading] = useAuthState(auth);
 
   console.log(user);
@@ -22,6 +22,7 @@ const BookingModal = ({ treatment, date, setTreatment, refetch }) => {
       treatmentId: _id,
       treatmentName,
       date,
+      price,
       slot,
       patientName: name,
       patientEmail: email,

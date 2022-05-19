@@ -23,27 +23,31 @@ const DeleteConfirmModal = ({ refetch, setDocForDelete, docForDelete }) => {
   return (
     <div>
       {/* <!-- Put this part before </body> tag --> */}
-      <input type="checkbox" id="delete-confirm-modal" class="modal-toggle" />
-      <div class="modal modal-bottom sm:modal-middle">
-        <div class="modal-box">
-          <h3 class="font-bold text-lg text-red-500">
+      <input
+        type="checkbox"
+        id="delete-confirm-modal"
+        className="modal-toggle"
+      />
+      <div className="modal modal-bottom sm:modal-middle">
+        <div className="modal-box">
+          <h3 className="font-bold text-lg text-red-500">
             You wanna delete DR. {docForDelete.name}
           </h3>
-          <p class="py-4">
+          <p className="py-4">
             You've been selected for a chance to get one year of subscription to
             use Wikipedia for free!
           </p>
-          <div class="modal-action">
+          <div className="modal-action">
             <label
               onClick={() => setDocForDelete(null)}
               // for="delete-confirm-modal"
-              class="btn"
+              className="btn"
             >
               Cancel
             </label>
             <button
               onClick={() => handleDelete(docForDelete.email)}
-              class="btn  btn-error"
+              className="btn  btn-error"
             >
               DELETE
             </button>

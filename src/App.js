@@ -14,6 +14,7 @@ import Navber from "./pages/Shared/Navber/Navber";
 import RequireAdmin from "./pages/Login/RequireAdmin/RequireAdmin";
 import AddDoctor from "./pages/Dashboard/AddDoctor";
 import ManageDoctors from "./pages/Dashboard/ManageDoctors";
+import Payment from "./pages/Dashboard/Payment";
 
 function App() {
   return (
@@ -45,6 +46,7 @@ function App() {
             path="myAppointments"
             element={<MyAppointments></MyAppointments>}
           ></Route>
+          <Route path="payment/:id" element={<Payment></Payment>}></Route>
 
           <Route path="myReviews" element={<MyReview></MyReview>}></Route>
 

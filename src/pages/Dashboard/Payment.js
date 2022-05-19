@@ -28,8 +28,6 @@ const Payment = () => {
   const { treatmentName, date, price, patientName, slot, patientEmail } =
     appointment;
 
-  console.log(appointment);
-
   return (
     <div>
       <div className="hero min-h-screen">
@@ -49,7 +47,7 @@ const Payment = () => {
           <div className="card md:w-[480px] w-96 bg-base-100 shadow-xl">
             <div className="card-body">
               <Elements stripe={stripePromise}>
-                <CheckoutForm />
+                <CheckoutForm appointment={appointment} />
               </Elements>
             </div>
           </div>
